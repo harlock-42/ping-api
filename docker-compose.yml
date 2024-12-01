@@ -1,0 +1,21 @@
+version: '3.9'
+
+services:
+  api:
+    build:
+      context: ./nestjs
+      dockerfile: Dockerfile
+      args:
+        JWT_CHECKER: ${JWT_CHECKER}
+    ports:
+      - "3000:3000"
+    volumes:
+      - data:/app/data
+      - ./nestjs:/app
+
+volumes:
+  data:
+
+networks:
+  ping-external:
+    external: true
